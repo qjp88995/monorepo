@@ -8,7 +8,9 @@
     "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,jsx,tsx,css,less,scss,vue,html,md}\"",
     "lint:eslint": "eslint",
     "lint:spellcheck": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,json,jsx,tsx,css,less,scss,vue,html,md}\"",
-    "commit": "git-cz"
+    "prepare": "husky",
+    "commit": "git-cz",
+    "precommit": "lint-staged"
   },
   "config": {
     "commitizen": {
@@ -42,6 +44,8 @@
     "eslint-plugin-react-you-might-not-need-an-effect": "^0.5.3",
     "eslint-plugin-vue": "^10.5.0",
     "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.1",
     "prettier": "^3.6.2",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.1"

@@ -159,16 +159,16 @@ pnpm run lint:prettier
 pnpm -Dw add eslint @eslint/js globals typescript-eslint eslint-plugin-prettier eslint-config-prettier eslint-plugin-vue eslint-plugin-react eslint-plugin-react-hooks @eslint-react/eslint-plugin eslint-plugin-react-you-might-not-need-an-effect
 ```
 
-| 类别 | 库名 |
-| --- |--- |
-| 核心引擎 | eslint |
-| 官方规则集 | @eslint/js |
-| 全局变量支持 | globals |
-| TypeScript 支持 | typescript-eslint |
-| 类型定义（辅助） | @types/node |
-| Prettier 集成 | eslint-plugin-prettier eslint-config-prettier |
-| Vue.js 支持 | eslint-plugin-vue |
-| React 支持 | eslint-plugin-react <br> eslint-plugin-react-hooks <br> @eslint-react/eslint-plugin <br> eslint-plugin-react-you-might-not-need-an-effect |
+| 类别             | 库名                                                                                                                                      |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| 核心引擎         | eslint                                                                                                                                    |
+| 官方规则集       | @eslint/js                                                                                                                                |
+| 全局变量支持     | globals                                                                                                                                   |
+| TypeScript 支持  | typescript-eslint                                                                                                                         |
+| 类型定义（辅助） | @types/node                                                                                                                               |
+| Prettier 集成    | eslint-plugin-prettier eslint-config-prettier                                                                                             |
+| Vue.js 支持      | eslint-plugin-vue                                                                                                                         |
+| React 支持       | eslint-plugin-react <br> eslint-plugin-react-hooks <br> @eslint-react/eslint-plugin <br> eslint-plugin-react-you-might-not-need-an-effect |
 
 添加配置文件 `eslint.config.js`
 
@@ -551,4 +551,51 @@ export default {
 
 ### husky
 
+安装依赖
+
+```bash
+pnpm -Dw add husky
+```
+
+初始化
+
+```
+pnpm dlx husky init
+```
+
+添加 Git Hook `.husky/pre-commit`
+
+```bash
+#!/bin/bash
+pnpm lint:prettier && pnpm lint:eslint && pnpm lint:spellcheck
+```
+
 ### lint-staged
+
+安装依赖
+
+```bash
+pnpm -Dw add lint-staged
+```
+
+添加 `package.json` 脚本
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "precommit": "lint-staged"
+  },
+  ...
+}
+```
+
+添加配置文件 `.lintstagedrc.js`
+
+```js
+export default {
+  '*.{js,ts,mjs,cjs,json,jsx,tsx,css,less,scss,vue,html,md}': ['cspell lint'],
+  '*.{js,ts,jsx,tsx,vue,md}': ['prettier --write', 'eslint'],
+};
+```
